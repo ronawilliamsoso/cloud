@@ -1,0 +1,25 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: cloud  # Interval to refresh the server list from the source
+ribbon:
+  eureka:
+    enabled: true
+  retryableStatusCodes: 400, 408, 500, 502, 503, 504
+  ReadTimeout: 30000 # Read timeout used by Apache HttpClient
+  ConnectTimeout: 30000 # Connect timeout used by Apache HttpClient
+  MaxAutoRetries: 5 # Max number of retries on the same server (excluding the first try)
+  MaxAutoRetriesNextServer: 10 # Max number of next servers to retry (excluding the first server)
+  OkToRetryOnAllOperations: true # Whether all operations can be retried for this client
+  ServerListRefreshInterval: 10000
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: sublearn
